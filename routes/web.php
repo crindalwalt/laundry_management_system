@@ -39,10 +39,10 @@ Route::middleware(["auth","verified"])->prefix("/dashboard")->group(function (){
     Route::get("/job/{job}/edit",[JobController::class,'edit'])->name("job.edit");
     Route::post("/job/{job}/edit",[JobController::class,'update'])->name("job.update");
 
+    Route::get("/customers",[CustomerController::class,"index"])->name("customer.all");
     Route::get("/jobs/{id}/show", [JobController::class,'detail'])->name("job.detail");
     Route::get("/jobs/{job}/delete", [JobController::class,'destroy'])->name("job.delete");
     Route::get("/jobs/{job}/detail", [JobController::class,'job_detail'])->name("job.detail.open");
-    Route::get("/customers",[CustomerController::class,"index"])->name("customer.all");
     Route::get("/ledger",[TransectionController::class,'index'])->name("transection.all");
     Route::get("/pdf/{job}",[TransectionController::class,'pdf'])->name("print.pdf");
     Route::post("/pay/{customer}/now",[TransectionController::class,'pay'])->name("udhar.pay");

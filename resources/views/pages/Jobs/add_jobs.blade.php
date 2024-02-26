@@ -17,7 +17,7 @@
         <div>
             <h4 class="mb-3 mb-md-0">Add a Job</h4>
             <p class="lead">
-                Add a new User or select from existing list
+                Add a new User or existing one
             </p>
         </div>
         <div class="d-flex align-items-center flex-wrap text-nowrap">
@@ -38,7 +38,7 @@
         <div class="col-md-12 grid-margin">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">Add New Customer</h6>
+                    <h6 class="card-title">Add JOB</h6>
                     <form class="forms-sample" method="POST" action="{{ route("customer.add") }}">
                         @csrf
                         <div class="row mb-3">
@@ -69,60 +69,60 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h6 class="card-title">Existing Customers</h6>
+{{--    <div class="row">--}}
+{{--        <div class="col-md-12 grid-margin stretch-card">--}}
+{{--            <div class="card">--}}
+{{--                <div class="card-body">--}}
+{{--                    <h6 class="card-title">Existing Customers</h6>--}}
 
-                    <div class="table-responsive">
-                        <table id="dataTableExample" class="table">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Customer</th>
-                                <th>Phone</th>
-                                <th>Colony</th>
+{{--                    <div class="table-responsive">--}}
+{{--                        <table id="dataTableExample" class="table">--}}
+{{--                            <thead>--}}
+{{--                            <tr>--}}
+{{--                                <th>#</th>--}}
+{{--                                <th>Customer</th>--}}
+{{--                                <th>Phone</th>--}}
+{{--                                <th>Colony</th>--}}
 
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @if($customers)
+{{--                                <th>Action</th>--}}
+{{--                            </tr>--}}
+{{--                            </thead>--}}
+{{--                            <tbody>--}}
+{{--                            @if($customers)--}}
 
-                                @foreach($customers as $item)
-                                    <tr>
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>{{ $item->full_name }}</td>
-                                        <td>{{ $item->phone_number}}</td>
-                                        <td>{{ $item->colony ?? "Not Provided" }}</td>
+{{--                                @foreach($customers as $item)--}}
+{{--                                    <tr>--}}
+{{--                                        <td>{{$loop->iteration}}</td>--}}
+{{--                                        <td>{{ $item->full_name }}</td>--}}
+{{--                                        <td>{{ $item->phone_number}}</td>--}}
+{{--                                        <td>{{ $item->colony ?? "Not Provided" }}</td>--}}
 
-                                        <td>
-                                            <a href="{{ route("job.detail",$item->id) }}"
-                                               class="btn btn-sm btn-outline-warning btn-icon-text mb-2  mb-md-0">
-                                                <i class="btn-icon-prepend" data-feather="eye"></i>
-                                                view Details
-                                            </a>
-                                            <a href="{{ route("job.step2",$item->id) }}"
-                                               class="btn btn-sm btn-success     btn-icon-text mb-2 mb-md-0">
-                                                <i class="btn-icon-prepend" data-feather="plus-circle"></i>
-                                                Add Job
-                                            </a>
-                                        </td>
+{{--                                        <td>--}}
+{{--                                            <a href="{{ route("job.detail",$item->id) }}"--}}
+{{--                                               class="btn btn-sm btn-outline-warning btn-icon-text mb-2  mb-md-0">--}}
+{{--                                                <i class="btn-icon-prepend" data-feather="eye"></i>--}}
+{{--                                                view Details--}}
+{{--                                            </a>--}}
+{{--                                            <a href="{{ route("job.step2",$item->id) }}"--}}
+{{--                                               class="btn btn-sm btn-success     btn-icon-text mb-2 mb-md-0">--}}
+{{--                                                <i class="btn-icon-prepend" data-feather="plus-circle"></i>--}}
+{{--                                                Add Job--}}
+{{--                                            </a>--}}
+{{--                                        </td>--}}
 
-                                    </tr>
-                                @endforeach
-                            @else
-                                <p>No data found</p>
-                            @endif
+{{--                                    </tr>--}}
+{{--                                @endforeach--}}
+{{--                            @else--}}
+{{--                                <p>No data found</p>--}}
+{{--                            @endif--}}
 
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--                            </tbody>--}}
+{{--                        </table>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
 {{--    <div class="row">--}}
 {{--        <div class="col-md-6 grid-margin stretch-card">--}}

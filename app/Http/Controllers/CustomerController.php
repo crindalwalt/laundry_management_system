@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
+use Illuminate\Support\Facades\DB;
+use function Laravel\Prompts\error;
 
 class CustomerController extends Controller
 {
@@ -32,12 +34,45 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-//        dd($request->all());
-        $id = Customer::create([
-            'full_name' => $request->full_name,
-            'phone_number' => $request->phone,
-        ]);
-        return redirect()->route("job.step2", $id);
+//        $data['metadata'] = [];
+//        $phoneNumber = $request->input("phone");
+//        $query = "select * from customers where phone_number = '$phoneNumber'";
+//        $execution = DB::select($query);
+//        $data['user'] = Customer::find($execution['id']);
+//        dd($data['user']);
+//        if ($execution == [] || null) {
+//            array_push($data['metadata'], ["usertype" => "new"]);
+//            $id = Customer::create([
+//                'full_name' => $request->full_name,
+//                'phone_number' => $request->phone,
+//            ]);
+//        } else {
+//            array_push($data['metadata'], ["usertype" => "old"]);
+//        }
+
+        $phoneNumber = $request->input("phone");
+        $customer = Customer::where("phone_number",$phoneNumber)->first();
+        if($customer != null){
+            $data['total_jobs'] = count($customer->jobs);
+            $data['total_payment_pending'] = $customer->jobs->where("payment_status", "pending")->sum("payment");
+            return redirect()->route("job.step2", $customer);
+
+        }else{
+            $id = Customer::create([
+                'full_name' => $request->full_name,
+                'phone_number' => $request->phone,
+            ]);
+            return redirect()->route("job.step2", $id);
+
+        }
+//        return redirect()->route("job.step2", $customer);
+
+
+
+
+
+
+//        return redirect()->route("job.step2", $id);
     }
 
     /**

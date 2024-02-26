@@ -110,7 +110,7 @@
 
                                     <h3
                                         class="badge rounded-pill px-5 py-2 @if($job->payment_status == "pending") bg-danger @elseif($job->payment_status == "paid")bg-success @endif">
-                                                {{ $job->payment_status == 'pending' ? "Udhar" : "paid" }}
+                                                {{ $job->payment_status == 'pending' ? "Pending" : "paid" }}
                                             </h3>
                                 </td>
 

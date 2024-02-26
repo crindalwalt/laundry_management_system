@@ -10,18 +10,99 @@
 @endpush
 
 @section('content')
-    <nav class="page-breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Forms</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Advanced Elements</li>
-        </ol>
-    </nav>
+    <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+        <div>
+            <h4 class="mb-3 mb-md-0">Jobs For <strong>{{ $customer->full_name}}
+                </strong></h4>
+        </div>
+        <div class="d-flex align-items-center flex-wrap text-nowrap">
 
+
+            <a href="{{ route("job.detail",$customer->id) }}" class="btn btn-warning btn-icon-text me-1 mb-2 mb-md-0">
+                <i class="btn-icon-prepend" data-feather="paper"></i>
+                View Khata
+            </a>
+
+        </div>
+    </div>
+    {{--    @dd($customer->account === null)--}}
+    <div class="row">
+        <div class="col-12 col-xl-12 stretch-card">
+            <div class="row flex-grow-1">
+
+                @if(count($customer->jobs) >= 1)
+                    <div class="col-md-4 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-baseline">
+                                    <h6 class="card-title mb-0">Total Jobs</h6>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 col-md-12 col-xl-5 my-3">
+                                        <h3 class="mb-2"> {{ count($customer->jobs) }}</h3>
+                                        <div class="d-flex align-items-baseline  ">
+                                            <p class="text-success ">
+                                                <span>Based on Data</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-12 col-xl-7">
+                                        <div id="customersChart" class="mt-md-3 mt-xl-0"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <div class="col-md-4 grid-margin stretch-card">
+                        <div class="card" style="background-color: #0d6efd;color: white;">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-baseline">
+                                    <h6 class="card-title mb-0">New Customer Added</h6>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                @if($customer->account != null)
+                    <div class="col-md-4 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-baseline">
+                                    <h6 class="card-title mb-0">Total Pending Payment</h6>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-12 col-xl-12 my-3">
+                                        <h3 class="mb-2">PKR {{ $customer->account->amount ?? "0" }}</h3>
+                                        <div class="d-flex align-items-baseline">
+                                            <p class="text-success">
+                                                <span>Based on Data </span>
+                                                <i data-feather="arrow-down" class="icon-sm mb-1"></i>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-12 col-xl-7">
+                                        <div id="ordersChart" class="mt-md-3 mt-xl-0"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div> <!-- row -->
+
+
+
+    {{--    Form with Cloth specific field to add a job --}}
     <div class="row">
         <div class="col-md-12 grid-margin">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">Add Job for {{$customer->full_name}}</h6>
+                    <h6 class="card-title">Add Job </h6>
 
                     <form class="forms-sample" method="POST" action="{{ route("job.save") }}">
                         @csrf
