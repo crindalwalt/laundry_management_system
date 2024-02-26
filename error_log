@@ -1,0 +1,1 @@
+[16-Feb-2024 03:48:14 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.23. in /home/u515404194/domains/thinkodedev.online/laravel/vendor/composer/platform_check.php on line 24
