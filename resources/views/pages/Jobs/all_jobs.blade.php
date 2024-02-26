@@ -150,6 +150,15 @@
                                                 </span>
                                                 </a>
                                             @endif
+                                                <a class="btn btn-sm btn-outline-primary me-2 d-flex align-items-center"
+                                                   href="{{ route("job.edit",$item->id) }}"
+                                                >
+                                                    <i class="btn-icon-prepend" data-feather="pen"></i>
+
+                                                    <span class="mx-2">
+                                                    Edit
+                                                </span>
+                                                </a>
                                             <a class="btn btn-sm btn-outline-warning d-flex align-items-center me-2"
                                                href="{{ route("job.detail.open",$item->id) }}"
                                             >

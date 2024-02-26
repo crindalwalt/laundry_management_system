@@ -71,6 +71,20 @@ class JobController extends Controller
         return redirect()->route("job.detail.open",$job->getKey());
     }
 
+    public function edit(Job $job)
+    {
+        $data['job'] = $job;
+        return view("pages.Jobs.job_edit")->with($data);
+    }
+
+    public function update(Request $request, Job $job)
+    {
+        $job->update($request->all());
+        Alert::success("Job has been updated successfully", "You are being redirected to the jobs dashboards");
+        return redirect()->route("job.detail.open",$job->getKey());
+
+    }
+
     public function job_detail(Job $job)
     {
         $data['job'] = $job;
@@ -131,7 +145,7 @@ class JobController extends Controller
         $current_date = Carbon::yesterday()->toDateString();
         $today_jobs = Job::whereDate("created_at",$current_date)->get();
         $data['jobs'] = $today_jobs;
-        $data['total_jobs'] = count($data['today_jobs']->where("cloth_status","pending"));
+        $data['total_jobs'] = count($today_jobs->where("cloth_status","pending"));
         $data['total_pending_payment'] = $today_jobs->where("payment_status", "pending")->sum("payment");
 
         return view("pages.Jobs.yesterday_jobs")->with($data);

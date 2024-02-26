@@ -28,10 +28,10 @@ class DatabaseSeeder extends Seeder
             'password'  => Hash::make("paradise")
         ]);
 
-//         $this->call([
-//             JobSeeder::class,
-//             CustomerSeeder::class,
-//             AccountSeeder::class,
-//         ]);
+        $this->call([
+            JobSeeder::class,
+            CustomerSeeder::class,
+            AccountSeeder::class,
+        ]);
     }
 }

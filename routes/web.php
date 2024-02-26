@@ -36,7 +36,8 @@ Route::middleware(["auth","verified"])->prefix("/dashboard")->group(function (){
     Route::post("/customer/add", [CustomerController::class,'store'])->name("customer.add");
     Route::post("/job/save", [JobController::class,'save'])->name("job.save");
     Route::get("/job/{job}/done",[JobController::class,'updateStatus'])->name("job.update.status");
-
+    Route::get("/job/{job}/edit",[JobController::class,'edit'])->name("job.edit");
+    Route::post("/job/{job}/edit",[JobController::class,'update'])->name("job.update");
 
     Route::get("/jobs/{id}/show", [JobController::class,'detail'])->name("job.detail");
     Route::get("/jobs/{job}/delete", [JobController::class,'destroy'])->name("job.delete");
